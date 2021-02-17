@@ -259,13 +259,26 @@ const players1Final = [...players1, 'Thiago', 'Coutihno', 'Perisic'];
 const {
   odds: { team1, x: draw, team2 },
 } = game;
-
 //console.log(team1, draw, team2);
 
 const printGoals = function () {
   return `${game.scored.length} goals were scores`;
 };
-
 //console.log(printGoals());
 
-team1 < team2 && console.log('team 1 is more likely to win');
+//team1 < team2 && console.log('team 1 is more likely to win');
+
+for (const [i, player] of game.scored.entries());
+//  console.log(`Goal ${i + 1}: ${player}`);
+
+const odds = Object.values(game.odds);
+
+let average = 0;
+for (const odd of odds) average += odd;
+average /= odds.length;
+//console.log(average);
+
+for (const [team, odd] of Object.entries(game.odds)) {
+  const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+  //  console.log(`Odd of ${teamStr} ${odd}`);
+}
