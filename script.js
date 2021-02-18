@@ -282,3 +282,35 @@ for (const [team, odd] of Object.entries(game.odds)) {
   const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
   //  console.log(`Odd of ${teamStr} ${odd}`);
 }
+
+const gameEvents = new Map([
+  [17, '⚽️ GOAL'],
+  [26, '🔁 SUBSTITUTION'],
+  [47, '⚽️ GOAL'],
+  [61, '🔁 SUBSTITUTION'],
+  [64, '🟨 YELLOW CARD'],
+  [69, '🟥 RED CARD'],
+  [70, '🔁 SUBSTITUTION'],
+  [72, '🔁 SUBSTITUTION'],
+  [76, '⚽️ GOAL'],
+  [80, '⚽️ GOAL'],
+  [92, '🟨 YELLOW CARD'],
+]);
+
+const events = [...new Set(gameEvents.values())];
+gameEvents.delete(64);
+
+// console.log(`An event happened, on average, every ${90 / gameEvents.size} minutes`);
+
+for (const [min, event] of gameEvents) {
+  const half = min <= 45 ? 'FIRST' : 'SECOND';
+  //  console.log(`[${half} HALF] ${min}: ${event}`);
+}
+
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  //  console.log(text);
+});
