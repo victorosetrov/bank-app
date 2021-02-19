@@ -203,114 +203,169 @@ document.querySelector('.again').addEventListener('click', function () {
 
 // calcAge(1988);
 
-const game = {
-  team1: 'Bayern Munich',
-  team2: 'Borrussia Dortmund',
-  players: [
-    [
-      'Neuer',
-      'Pavard',
-      'Martinez',
-      'Alaba',
-      'Davies',
-      'Kimmich',
-      'Goretzka',
-      'Coman',
-      'Muller',
-      'Gnarby',
-      'Lewandowski',
-    ],
-    [
-      'Burki',
-      'Schulz',
-      'Hummels',
-      'Akanji',
-      'Hakimi',
-      'Weigl',
-      'Witsel',
-      'Hazard',
-      'Brandt',
-      'Sancho',
-      'Gotze',
-    ],
-  ],
-  score: '4:0',
-  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-  date: 'Nov 9th, 2037',
-  odds: {
-    team1: 1.33,
-    x: 3.25,
-    team2: 6.5,
+// const game = {
+//   team1: 'Bayern Munich',
+//   team2: 'Borrussia Dortmund',
+//   players: [
+//     [
+//       'Neuer',
+//       'Pavard',
+//       'Martinez',
+//       'Alaba',
+//       'Davies',
+//       'Kimmich',
+//       'Goretzka',
+//       'Coman',
+//       'Muller',
+//       'Gnarby',
+//       'Lewandowski',
+//     ],
+//     [
+//       'Burki',
+//       'Schulz',
+//       'Hummels',
+//       'Akanji',
+//       'Hakimi',
+//       'Weigl',
+//       'Witsel',
+//       'Hazard',
+//       'Brandt',
+//       'Sancho',
+//       'Gotze',
+//     ],
+//   ],
+//   score: '4:0',
+//   scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+//   date: 'Nov 9th, 2037',
+//   odds: {
+//     team1: 1.33,
+//     x: 3.25,
+//     team2: 6.5,
+//   },
+// };
+
+// const [players1, players2] = game.players;
+// //console.log(players1, players2);
+
+// const [gk = [0], ...fieldPlayers] = players1;
+// //console.log(gk, fieldPlayers);
+
+// const allPlayers = [...players1, ...players2];
+// //console.log(allPlayers);
+
+// const players1Final = [...players1, 'Thiago', 'Coutihno', 'Perisic'];
+// //console.log(players1Final);
+
+// const {
+//   odds: { team1, x: draw, team2 },
+// } = game;
+// //console.log(team1, draw, team2);
+
+// const printGoals = function () {
+//   return `${game.scored.length} goals were scores`;
+// };
+// //console.log(printGoals());
+
+// //team1 < team2 && console.log('team 1 is more likely to win');
+
+// for (const [i, player] of game.scored.entries());
+// //  console.log(`Goal ${i + 1}: ${player}`);
+
+// const odds = Object.values(game.odds);
+
+// let average = 0;
+// for (const odd of odds) average += odd;
+// average /= odds.length;
+// //console.log(average);
+
+// for (const [team, odd] of Object.entries(game.odds)) {
+//   const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+//   //  console.log(`Odd of ${teamStr} ${odd}`);
+// }
+
+// const gameEvents = new Map([
+//   [17, '⚽️ GOAL'],
+//   [26, '🔁 SUBSTITUTION'],
+//   [47, '⚽️ GOAL'],
+//   [61, '🔁 SUBSTITUTION'],
+//   [64, '🟨 YELLOW CARD'],
+//   [69, '🟥 RED CARD'],
+//   [70, '🔁 SUBSTITUTION'],
+//   [72, '🔁 SUBSTITUTION'],
+//   [76, '⚽️ GOAL'],
+//   [80, '⚽️ GOAL'],
+//   [92, '🟨 YELLOW CARD'],
+// ]);
+
+// const events = [...new Set(gameEvents.values())];
+// gameEvents.delete(64);
+
+// // console.log(`An event happened, on average, every ${90 / gameEvents.size} minutes`);
+
+// for (const [min, event] of gameEvents) {
+//   const half = min <= 45 ? 'FIRST' : 'SECOND';
+//   //  console.log(`[${half} HALF] ${min}: ${event}`);
+// }
+
+// document.body.append(document.createElement('textarea'));
+// document.body.append(document.createElement('button'));
+
+// document.querySelector('button').addEventListener('click', function () {
+//   const text = document.querySelector('textarea').value;
+//   //  console.log(text);
+// });
+
+//const oneWord = function (str) {return str.replace(/ /g, '').toLowerCase()};
+
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
+};
+
+const transformer = function (str, fn) {
+  console.log(`Original string: ${str}`);
+  console.log(`Transformed string: ${fn(str)}`);
+  console.log(`Transformed by: ${fn.name}`);
+};
+
+//transformer('LokomotivMoscow is the best!', upperFirstWord);
+
+const poll = {
+  question: 'What is your favorite programming language?',
+  options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+  answers: new Array(4).fill(0),
+  registerNewAnswer() {
+    const answer = Number(
+      prompt(
+        `${this.question}:\n${this.options.join('\n')}\n(Write option number)?`
+      )
+    );
+    console.log(answer);
+    typeof answer === 'number' &&
+      answer < this.answers.length &&
+      this.answers[answer]++;
+    //console.log(this.answers);
+    this.displayResults();
+    this.displayResults('string');
+  },
+  displayResults(type = 'array') {
+    if (type === 'array') {
+      //console.log(this.answers);
+    } else if (type === 'string') {
+      //console.log(`Poll results are ${this.answers.join(', ')}`);
+    }
   },
 };
 
-const [players1, players2] = game.players;
-//console.log(players1, players2);
+document
+  .querySelector('.poll')
+  .addEventListener('click', poll.registerNewAnswer.bind(poll));
 
-const [gk = [0], ...fieldPlayers] = players1;
-//console.log(gk, fieldPlayers);
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
 
-const allPlayers = [...players1, ...players2];
-//console.log(allPlayers);
-
-const players1Final = [...players1, 'Thiago', 'Coutihno', 'Perisic'];
-//console.log(players1Final);
-
-const {
-  odds: { team1, x: draw, team2 },
-} = game;
-//console.log(team1, draw, team2);
-
-const printGoals = function () {
-  return `${game.scored.length} goals were scores`;
-};
-//console.log(printGoals());
-
-//team1 < team2 && console.log('team 1 is more likely to win');
-
-for (const [i, player] of game.scored.entries());
-//  console.log(`Goal ${i + 1}: ${player}`);
-
-const odds = Object.values(game.odds);
-
-let average = 0;
-for (const odd of odds) average += odd;
-average /= odds.length;
-//console.log(average);
-
-for (const [team, odd] of Object.entries(game.odds)) {
-  const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
-  //  console.log(`Odd of ${teamStr} ${odd}`);
-}
-
-const gameEvents = new Map([
-  [17, '⚽️ GOAL'],
-  [26, '🔁 SUBSTITUTION'],
-  [47, '⚽️ GOAL'],
-  [61, '🔁 SUBSTITUTION'],
-  [64, '🟨 YELLOW CARD'],
-  [69, '🟥 RED CARD'],
-  [70, '🔁 SUBSTITUTION'],
-  [72, '🔁 SUBSTITUTION'],
-  [76, '⚽️ GOAL'],
-  [80, '⚽️ GOAL'],
-  [92, '🟨 YELLOW CARD'],
-]);
-
-const events = [...new Set(gameEvents.values())];
-gameEvents.delete(64);
-
-// console.log(`An event happened, on average, every ${90 / gameEvents.size} minutes`);
-
-for (const [min, event] of gameEvents) {
-  const half = min <= 45 ? 'FIRST' : 'SECOND';
-  //  console.log(`[${half} HALF] ${min}: ${event}`);
-}
-
-document.body.append(document.createElement('textarea'));
-document.body.append(document.createElement('button'));
-
-document.querySelector('button').addEventListener('click', function () {
-  const text = document.querySelector('textarea').value;
-  //  console.log(text);
-});
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
